@@ -40,8 +40,8 @@ async def text(bot, update):
 @Client.on_message(filters.command("search"))
 
 async def search(bot, update):
-    await message.reply_results
-    results = VideosSearch(update.text, limit=5).result()
+    await message.reply(
+    results = VideosSearch(update.message, limit=5).result()
     answers = []
     
     for result in results:
@@ -52,8 +52,8 @@ async def search(bot, update):
         
     
     
-    await update.reply_text(
-        text=risults,
+    await update.reply(
+        text=results,
         reply_markup=reply_markup,
         disable_web_page_preview=True,
         quote=True
