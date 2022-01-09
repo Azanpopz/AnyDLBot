@@ -23,7 +23,7 @@ from youtubesearchpython import VideosSearch
 
 
 
-@Bot.on_message(filters.private & filters.all)
+@Client.on_message(filters.private & filters.all)
 async def text(bot, update):
     
     text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
