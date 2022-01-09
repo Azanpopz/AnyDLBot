@@ -40,7 +40,7 @@ async def text(bot, update):
 @Client.on_message(filters.command("search"))
 
 async def search(bot, update):
-    
+    await message.reply_results
     results = VideosSearch(update.text, limit=5).result()
     answers = []
     
