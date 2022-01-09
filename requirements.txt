@@ -19,3 +19,6 @@ ffmpeg
 aiofiles
 requests
 wget
+youtube_search
+play_scraper
+CC
