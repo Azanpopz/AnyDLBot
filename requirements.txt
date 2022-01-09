@@ -22,3 +22,5 @@ wget
 youtube_search
 play_scraper
 py-youtube
+
+youtube-search-python
