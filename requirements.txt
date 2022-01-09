@@ -5,3 +5,5 @@ TgCrypto
 ffmpeg-python
 youtube-dl
 wget
+
+ytthumb
