@@ -9,6 +9,7 @@ import requests
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto
 from youtubesearchpython import VideosSearch
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 
 
