@@ -1,17 +1,3 @@
-#!/usr/bin/env python3
-# Copyright (C) @ZauteKm
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import os
 import asyncio
 from urllib.parse import urlparse
@@ -23,11 +9,11 @@ from opencc import OpenCC
 from config import Config
 import wget
 
-ZauteKm = Client(
+Jebot = Client(
    "AnyDL Bot",
-   api_id=Config.API_ID,
+   api_id=Config.APP_ID,
    api_hash=Config.API_HASH,
-   bot_token=Config.BOT_TOKEN,
+   bot_token=Config.TG_BOT_TOKEN,
 )
 
 YTDL_REGEX = (r"^((?:https?:)?\/\/)"
@@ -38,85 +24,74 @@ YTDL_REGEX = (r"^((?:https?:)?\/\/)"
 s2tw = OpenCC('s2tw.json').convert
 
 
-@ZauteKm.on_message(filters.command("start"))
+@Jebot.on_message(filters.command("start"))
 async def start(client, message):
    if message.chat.type == 'private':
-       await ZauteKm.send_message(
+       await Jebot.send_message(
                chat_id=message.chat.id,
-               text="""<b>Hey There, I'm AnyDLBot
+               text="""<b>Hey There, I'm AnyDL Bot
 
-I can download video or audio from Youtube, Pornhub and Xhamster. \n\nMade by @ZauteKm.
+I can download video or audio from Youtube, Pornhub and Xhamster. Made by @JEBotZ.
 
 Hit help button to find out more about how to use me</b>""",   
                             reply_markup=InlineKeyboardMarkup(
-                                [
-                                [
-                                        InlineKeyboardButton('🙆🏻‍♂️ Help', callback_data="help"),
-                                        InlineKeyboardButton('Feedback 👥', url='https://telegram.me/zautebot')
+                                [[
+                                        InlineKeyboardButton(
+                                            "Help", callback_data="help"),
+                                        InlineKeyboardButton(
+                                            "Channel", url="https://t.me/Infinity_BOTs")
                                     ],[
-                                        InlineKeyboardButton('🧑‍🔧 Owner', url='https://t.me/ZauteKm'),
-                                        InlineKeyboardButton('🤖 Bot Lists', url='https://t.me/BotzList'),
-                                        InlineKeyboardButton('Channel 📢', url='https://t.me/JosProjects')
-                                    ],[
-                                        InlineKeyboardButton('🔻 Source Code -GitHub🔻', url='https://github.com/ZauteKm/AnyDLBot'),
+                                      InlineKeyboardButton(
+                                            "Source Code", url="https://github.com/ImJanindu/AnyDL-Bot")
                                     ]]
                             ),        
             disable_web_page_preview=True,        
             parse_mode="html")
 
-@ZauteKm.on_message(filters.command("help"))
+@Jebot.on_message(filters.command("help"))
 async def help(client, message):
     if message.chat.type == 'private':   
-        await ZauteKm.send_message(
+        await Jebot.send_message(
                chat_id=message.chat.id,
-               text="""<b><u>AnyDLBot Help!</u></b>
+               text="""<b>AnyDL Bot Help!
 
 Just send a Youtube, Pornhub or Xhamster video url to download it in video or audio format!
 
-<b>▷ Please Join :</b> @TGBotsProJect""",
+Join @Infinity_BOTs</b>""",
         reply_markup=InlineKeyboardMarkup(
                                 [[
                                         InlineKeyboardButton(
-                                            "🔙 Back", callback_data="start"),
+                                            "Back", callback_data="start"),
                                         InlineKeyboardButton(
-                                            "About 🙄", callback_data="about"),
+                                            "About", callback_data="about"),
                                   ],[
-                                        InlineKeyboardButton("🧑‍🔧 Owner", url="https://t.me/ZauteKm"),
-                                        InlineKeyboardButton("🤖 Bot Lists", url="https://t.me/BotzList"),
-                                        InlineKeyboardButton('Channel 📢', url="https://t.me/JosProjects")
-                                    ],[
-                                        InlineKeyboardButton("🔻 Source Code -GitHub🔻", url="https://github.com/ZauteKm/AnyDLBot"),
+                                        InlineKeyboardButton(
+                                            "Source Code", url="https://github.com/ImJanindu/AnyDL-Bot")
                                     ]]
                             ),        
             disable_web_page_preview=True,        
             parse_mode="html")
 
-@ZauteKm.on_message(filters.command("about"))
+@Jebot.on_message(filters.command("about"))
 async def about(client, message):
     if message.chat.type == 'private':   
-        await ZauteKm.send_message(
+        await Jebot.send_message(
                chat_id=message.chat.id,
-               text="""<b><u>About AnyDLBot!</u></b>
+               text="""<b>About AnyDL Bot!</b>
 
-<b>▷ 🧑‍🔧 Developer:</b> <a href="https://t.me/ZauteKm">Zaute Km</a>
+<b>♞ Developer:</b> <a href="https://t.me/ImJanindu">Jason</a>
 
-<b>▷ 📚 Library:</b> <a href="https://github.com/pyrogram/pyrogram">Pyrogram</a>
+<b>♞ Support:</b> <a href="https://t.me/InfinityBOTs_Support">Infinity BOTs Support</a>
 
-<b>▷ 📢 Channel:</b> @TGBotsProJect
+<b>♞ Library:</b> <a href="https://github.com/pyrogram/pyrogram">Pyrogram</a>
 
-<b>▷ 🌀 Source Code:</b> <a href="https://github.com/ZauteKm/AnyDLBot">GitHub</a>""",
+<b>Join @Infinity_BOTs</b>""",
      reply_markup=InlineKeyboardMarkup(
                                 [[
                                         InlineKeyboardButton(
-                                            "🔙 Back", callback_data="help"),
+                                            "Back", callback_data="help"),
                                         InlineKeyboardButton(
-                                            "Credit ❤️", url="https://t.me/ZauteBot"),
-                                  ],[
-                                        InlineKeyboardButton("🧑‍🔧 Owner", url="https://t.me/ZauteKm"),
-                                        InlineKeyboardButton("🤖 Bot Lists", url="https://t.me/BotzList"),
-                                        InlineKeyboardButton('Channel 📢', url="https://t.me/JosProjects")
-                                    ],[
-                                        InlineKeyboardButton("🔻 Source Code -GitHub 🔻", url="https://github.com/ZauteKm/AnyDLBot"),
+                                            "Source Code", url="https://github.com/ImJanindu/AnyDL-Bot")
                                     ]]
                             ),        
             disable_web_page_preview=True,        
@@ -125,7 +100,7 @@ async def about(client, message):
 
 # https://docs.pyrogram.org/start/examples/bot_keyboards
 # Reply with inline keyboard
-@ZauteKm.on_message(filters.private
+@Jebot.on_message(filters.private
                    & filters.text
                    & ~filters.edited
                    & filters.regex(YTDL_REGEX))
@@ -136,7 +111,7 @@ async def ytdl_with_button(c: Client, message: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=message.chat.id,
-                    text="Sorry, You are Banned to use me. Contact my [master](https://t.me/ZauteBot).",
+                    text="Sorry, You are Banned to use me. Contact my [Support Group](https://t.me/InfinityBots_Support).",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
@@ -158,17 +133,17 @@ async def ytdl_with_button(c: Client, message: Message):
         except Exception:
             await c.send_message(
                 chat_id=message.chat.id,
-                text="Something went Wrong. Contact my [master](https://t.me/zautebot).",
+                text="Something went Wrong. Contact my [Support Group](https://t.me/InfinityBots_Support).",
                 parse_mode="markdown",
                 disable_web_page_preview=True)
             return
     await message.reply_text(
-        "**Choose Download type👇**",
+        "**Choose download type👇**",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🎵 Audio",
+                        "Audio 🎵",
                         callback_data="ytdl_audio"
                     ),
                     InlineKeyboardButton(
@@ -182,7 +157,7 @@ async def ytdl_with_button(c: Client, message: Message):
     )
 
 
-@ZauteKm.on_callback_query(filters.regex("^ytdl_audio$"))
+@Jebot.on_callback_query(filters.regex("^ytdl_audio$"))
 async def callback_query_ytdl_audio(_, callback_query):
     try:
         url = callback_query.message.reply_to_message.text
@@ -260,7 +235,7 @@ else:
        os.remove(audio_file)
        os.remove(thumbnail_file)
 
-@ZauteKm.on_callback_query(filters.regex("^ytdl_video$"))
+@Jebot.on_callback_query(filters.regex("^ytdl_video$"))
 async def callback_query_ytdl_video(_, callback_query):
     try:
         # url = callback_query.message.text
@@ -361,7 +336,7 @@ def get_resolution(info_dict):
     return (width, height)
 
 
-@ZauteKm.on_callback_query()
+@Jebot.on_callback_query()
 async def button(bot, update):
       cb_data = update.data
       if "help" in cb_data:
@@ -377,8 +352,8 @@ async def button(bot, update):
 print(
     """
 Bot Started!
-Join @JosProjects
+Join @Infinity_BOTs
 """
 )
 
-ZauteKm.run()
+Jebot.run()
