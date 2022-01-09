@@ -47,7 +47,7 @@ async def text(bot, update):
 
 async def search(bot, update):
     
-    results = VideosSearch(update.text, limit=50).result()
+    results = VideosSearch(update.risult, limit=50).result()
     answers = []
     
     for result in results:
@@ -73,8 +73,8 @@ async def search(bot, update):
         
     
     
-    await update.reply_text(
-        text=answer,
+    await update.reply_risult(
+        answer=(answers)
         reply_markup=reply_markup,
         disable_web_page_preview=True,
         quote=True
