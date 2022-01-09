@@ -37,8 +37,8 @@ class Config(object):
 
     
 
-    AUDIO_THUMBNAIL = os.environ.get("AUDIO_THUMBNAIL", "")
-
-    VIDEO_THUMBNAIL = os.environ.get("VIDEO_THUMBNAIL", "")
-
-    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", None)
+    DATABASE = os.environ.get("DB_URI")
+    OWNER_ID = set(int(x) for x in os.environ.get("OWNER_ID", "1961162381").split())
+    SUPPORT = os.environ.get("SUPPORT")
+    BOT_NAME = os.environ.get("bat")
+    BOT_USERNAME = os.environ.get("bn")
