@@ -11,9 +11,9 @@ import wget
 
 Jebot = Client(
    "AnyDL Bot",
-   api_id=Config.APP_ID,
+   api_id=Config.API_ID,
    api_hash=Config.API_HASH,
-   bot_token=Config.TG_BOT_TOKEN,
+   bot_token=Config.BOT_TOKEN,
 )
 
 YTDL_REGEX = (r"^((?:https?:)?\/\/)"
