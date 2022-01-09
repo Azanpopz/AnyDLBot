@@ -7,3 +7,15 @@ youtube-dl
 wget
 
 ytthumb
+
+
+youtube_dl
+youtube_search_python
+youtube_search
+ffmpeg-python
+lyricsgenius
+aiohttp
+ffmpeg
+aiofiles
+requests
+wget
