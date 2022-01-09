@@ -4,66 +4,47 @@ from pyrogram import Client, filters
 from pyrogram.types import *
 from config import Config
 
+import os
+import play_scraper
+from pyrogram import Client, filters
+from pyrogram.types import *
 
 
 
 
-@Client.on_message(filters.private & filters.all)
-async def text(bot, update):
-    
-    text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
-    reply_markup = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton(text="Search here", switch_inline_query_current_chat="")],
-            [InlineKeyboardButton(text="Search in another chat", switch_inline_query="")]
-        ]
-    )
-    
-    await update.reply_text(
-        text=text,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        quote=True
-    )
 
 
-@Client.on_message(filters.private & filters.command(["search"]))
+@Client.on_inline_query()
 async def search(bot, update):
-    
-    results = VideosSearch(update.bot, limit=5).result()
+    results = play_scraper.search(update.query)
     answers = []
-    
     for result in results:
-        title = result["title"]
-        views_short = result["viewCount"]["short"]
-        duration = result["duration"]
-        duration_text = result["accessibility"]["duration"]
-        views = result["viewCount"]["text"]
-        publishedtime = result["publishedTime"]
-        channel_name = result["channel"]["name"]
-        channel_link = result["channel"]["link"]
-        description = f"{views_short} | {duration}"
-        details = f"**Title:** {title}" + "\n" \
-        f"**Channel:** [{channel_name}]({channel_link})" + "\n" \
-        f"**Duration:** {duration_text}" + "\n" \
-        f"**Views:** {views}" + "\n" \
-        f"**Published Time:** {publishedtime}" + "\n" \
-        "\n" + "**Made by @FayasNoushad**"
-        thumbnail = ytthumb.thumbnail(result["id"])
+        details = "**Title:** `{}`".format(result["title"]) + "\n" \
+        "**Description:** `{}`".format(result["description"]) + "\n" \
+        "**App ID:** `{}`".format(result["app_id"]) + "\n" \
+        "**Developer:** `{}`".format(result["developer"]) + "\n" \
+        "**Developer ID:** `{}`".format(result["developer_id"]) + "\n" \
+        "**Score:** `{}`".format(result["score"]) + "\n" \
+        "**Price:** `{}`".format(result["price"]) + "\n" \
+        "**Full Price:** `{}`".format(result["full_price"]) + "\n" \
+        "**Free:** `{}`".format(result["free"]) + "\n" \
+        "\n" + "Made by @FayasNoushad"
         reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]]
+            [[InlineKeyboardButton(text="Play Store", url="https://play.google.com"+result["url"])]]
         )
         try:
             answers.append(
-                InlineQueryResultPhoto(
-                    title=title,
-                    description=description,
-                    caption=details,
-                    photo_url=thumbnail,
+                InlineQueryResultArticle(
+                    title=result["title"],
+                    description=result.get("description", None),
+                    thumb_url=result.get("icon", None),
+                    input_message_content=InputTextMessageContent(
+                        message_text=details, disable_web_page_preview=True
+                    ),
                     reply_markup=reply_markup
                 )
             )
-        except:
-            pass
-    
+        except Exception as error:
+            print(error)
     await update.answer(answers)
+
