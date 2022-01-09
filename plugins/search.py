@@ -3,10 +3,17 @@ import os
 from py_youtube import Data, Search 
 from pyrogram.types import *
 from config import Config
+import os
+import ytthumb
+import requests
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultPhoto
+from youtubesearchpython import VideosSearch
 
 
-@Client.on_message(filters.private & filters.command(["start"]))
-async def start(client,message):
+
+@Client.on_message(filters.private & filters.command(["starrt"]))
+async def starrt(update,message):
 	await message.reply_text("Helo iam Youtube Video Search\nUse in inline mode")
 	
 
@@ -14,7 +21,7 @@ async def start(client,message):
 @Client.on_message(filters.private & filters.command(["search"]))
 async def search_video(client,message):
 	search = []
-	result = Search(query.query.strip()).videos()
+	result = Search(update.message.strip()).videos()
 	for i in result:
 		try:
 			title = i["title"]
