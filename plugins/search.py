@@ -23,7 +23,7 @@ from youtubesearchpython import VideosSearch
 
 
 
-@Client.on_message(filters.private & filters.all)
+@Client.on_message(filters.command("srt"))
 async def text(bot, update):
     
     text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
@@ -46,7 +46,7 @@ async def text(bot, update):
 
 async def search(bot, update):
     
-    results = VideosSearch(update.answer, limit=50).result()
+    results = VideosSearch(update.reply_message, limit=50).result()
     answers = []
     
     for result in results:
