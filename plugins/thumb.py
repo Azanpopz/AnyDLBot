@@ -4,6 +4,9 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import Config
 
+
+BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]])
+
 @Client.on_message(filters.private & filters.command(["ytthumb"]))
 async def send_thumbnail(bot, update):
     message = await update.reply_text(
