@@ -21,7 +21,7 @@ BUTTON_TEXT=Config.BUTTON_TEXT
 URL_LINK=Config.URL_LINK
 
 
-@Jebot.on_message(filters.media & filters.channel)
+@Client.on_message(filters.media & filters.channel)
 async def caption(client, message: Message):
     kopp, _ = get_file_id(message)
     await message.edit(f"{CAPTION_TEXT}",
