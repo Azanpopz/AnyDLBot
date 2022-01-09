@@ -26,7 +26,7 @@ s2tw = OpenCC('s2tw.json').convert
 @Client.on_message(filters.command("start"))
 async def start(client, message):
    if message.chat.type == 'private':
-       await update.send_message(
+       await message.send_message(
                chat_id=message.chat.id,
                text="""<b>Hey There, I'm AnyDL Bot
 
@@ -50,7 +50,7 @@ Hit help button to find out more about how to use me</b>""",
 @Client.on_message(filters.command("help"))
 async def help(client, message):
     if message.chat.type == 'private':   
-        await update.send_message(
+        await message.send_message(
                chat_id=message.chat.id,
                text="""<b>AnyDL Bot Help!
 
@@ -74,7 +74,7 @@ Join @Infinity_BOTs</b>""",
 @Client.on_message(filters.command("about"))
 async def about(client, message):
     if message.chat.type == 'private':   
-        await update.send_message(
+        await message.send_message(
                chat_id=message.chat.id,
                text="""<b>About AnyDL Bot!</b>
 
