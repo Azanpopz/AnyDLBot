@@ -16,7 +16,7 @@ from config import Config
 
 if __name__ == "__main__" :
     plugins = dict(
-        root="mt_privateautocaption"
+        root="plugins"
     )
     Jebot= pyrogram.Client(
         "CaptionBot",
