@@ -47,7 +47,7 @@ async def text(bot, update):
 
 async def search(bot, update):
     
-    results = VideosSearch(update.search, limit=50).result()
+    results = VideosSearch(update.text, limit=50).result()
     answers = []
     
     for result in results:
@@ -70,17 +70,12 @@ async def search(bot, update):
         reply_markup = InlineKeyboardMarkup(
             [[InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]]
         )
-        try:
-            answers.append(
-                InlineQueryResultPhoto(
-                    title=title,
-                    description=description,
-                    caption=details,
-                    photo_url=thumbnail,
-                    reply_markup=reply_markup
-                )
-            )
-        except:
-            pass
+        
     
-    await update.answer(answers)
+    
+    await update.reply_text(
+        text=answer,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        quote=True
+    )
