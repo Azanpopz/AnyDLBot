@@ -16,11 +16,26 @@ import os
 
 
 class Config(object):
-    TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+   
 
-    APP_ID = int(os.environ.get("APP_ID", 12345))
+    
 
+    AUDIO_THUMBNAIL = os.environ.get("AUDIO_THUMBNAIL", "")
+
+    VIDEO_THUMBNAIL = os.environ.get("VIDEO_THUMBNAIL", "")
+
+    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", None)
+
+
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+    API_ID = int(os.environ.get("API_ID", 12345))
     API_HASH = os.environ.get("API_HASH", "")
+    CAPTION = os.environ.get("CAPTION", "@Mo_Tech_YT @Mo_Tech_Group")
+    BUTTON_TEXT = os.environ.get("BUTTON", "🔻Join Channel🔻")
+    URL_LINK = os.environ.get("LINK", "T.ME/MO_TECH_YT")
+    USERNAME = os.environ.get("USERNAME", "")
+
+    
 
     AUDIO_THUMBNAIL = os.environ.get("AUDIO_THUMBNAIL", "")
 
