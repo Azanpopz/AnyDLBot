@@ -22,7 +22,7 @@ from youtubesearchpython import SearchVideos
 from config import Config
 
 
-@Client.on_message(filters.command(["song", "s", "mu", "aud"]) & ~filters.edited)
+@Client.on_message(filters.command(["mp3", "aud"]) & ~filters.edited)
 def song(client, message):
 
     user_id = message.from_user.id
