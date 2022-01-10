@@ -16,9 +16,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
-from plugins.config import ARQ_API_KEY
-from plugins.config import BOT_NAME as bn
-from plugins.config import DURATION_LIMIT
+
 from plugins.config import UPDATES_CHANNEL as updateschannel
 from plugins.config import que
 from plugins.function.admins import admins as a
@@ -34,6 +32,12 @@ from plugins.services.callsmusic.callsmusic import client as USER
 from plugins.services.converter.converter import convert
 from plugins.services.downloaders import youtube
 from plugins.services.queues import queues
+
+ARQ_API_KEY = getenv("ARQ_API_KEY", None)
+BOT_NAME = getenv("BOT_NAME")
+UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "tgbotproject")
+DURATION_LIMIT = int(getenv("DURATION_LIMIT", "15"))
+
 
 aiohttpsession = aiohttp.ClientSession()
 chat_id = None
