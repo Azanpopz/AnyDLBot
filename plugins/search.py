@@ -52,7 +52,7 @@ async def ytsearch(_, message: Message):
         i = 0
         text = ""
         while i < 1:
-            text += f"Title - {results[i]['title']}\n"
+            text += f"<code>Title - {results[i]['title']} </code>\n"
             text += f"Duration - {results[i]['duration']}\n"
             text += f"Views - {results[i]['views']}\n"
             text += f"Channel - {results[i]['channel']}\n"
