@@ -60,11 +60,9 @@ async def ytsearch(_, message: Message):
             reply_markup = InlineKeyboardMarkup(
             [[InlineKeyboardButton(text="Watch Video 📹", url=f"https://youtube.com")]]
         )
-                reply_markup=reply_markup
-                )
-            )
+                
             i += 1
-        await m.edit(text, disable_web_page_preview=True)
+        await m.edit(text, reply_markup=reply_markup, disable_web_page_preview=True)
     except Exception as e:
         await message.reply_text(str(e))
 
