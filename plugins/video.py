@@ -19,7 +19,7 @@ from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
 from plugins.config import DURATION_LIMIT
-from plugins.modules.play import arq
+
 
 
 @Client.on_message(filters.command("song") & ~filters.channel)
