@@ -18,8 +18,8 @@ from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
 
-from VCsMusicBot.config import DURATION_LIMIT
-from VCsMusicBot.modules.play import arq
+from plugins.config import DURATION_LIMIT
+
 
 
 @Client.on_message(filters.command("song") & ~filters.channel)
@@ -322,7 +322,7 @@ async def deezsong(_, message):
     is_downloading = False
 
 
-@Client.on_message(filters.command(["vsong", "video"]))
+@Client.on_message(filters.command(["v", "vid"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
