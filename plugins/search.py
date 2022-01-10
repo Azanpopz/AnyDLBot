@@ -58,7 +58,7 @@ async def ytsearch(_, message: Message):
             text += f"Channel - {results[i]['channel']}\n"
             text += f"https://youtube.com{results[i]['url_suffix']}\n\n"
             reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Watch Video 📹", url=f"https://youtube.com"])]]
+            [[InlineKeyboardButton(text="Watch Video 📹", url=f"https://youtube.com")]]
         )
             i += 1
         await m.edit(text, disable_web_page_preview=True)
