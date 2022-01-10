@@ -17,8 +17,8 @@ from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
 
-from plugins.config import UPDATES_CHANNEL as updateschannel
-from plugins.config import que
+from VCsMusicBot.config import UPDATES_CHANNEL as updateschannel
+from VCsMusicBot.config import que
 
 from plugins.helpers.errors import DurationLimitError
 
