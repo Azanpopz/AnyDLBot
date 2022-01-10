@@ -20,3 +20,5 @@ bot = Bot(
     plugins=dict(root="VCsMusicBot.modules"),
 )
 
+bot.start()
+run()
