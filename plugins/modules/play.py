@@ -16,24 +16,24 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
-from VCsMusicBot.config import ARQ_API_KEY
-from VCsMusicBot.config import BOT_NAME as bn
-from VCsMusicBot.config import DURATION_LIMIT
-from VCsMusicBot.config import UPDATES_CHANNEL as updateschannel
-from VCsMusicBot.config import que
-from VCsMusicBot.function.admins import admins as a
-from VCsMusicBot.helpers.admins import get_administrators
-from VCsMusicBot.helpers.channelmusic import get_chat_id
-from VCsMusicBot.helpers.errors import DurationLimitError
-from VCsMusicBot.helpers.decorators import errors
-from VCsMusicBot.helpers.decorators import authorized_users_only
-from VCsMusicBot.helpers.filters import command, other_filters
-from VCsMusicBot.helpers.gets import get_file_name
-from VCsMusicBot.services.callsmusic import callsmusic
-from VCsMusicBot.services.callsmusic.callsmusic import client as USER
-from VCsMusicBot.services.converter.converter import convert
-from VCsMusicBot.services.downloaders import youtube
-from VCsMusicBot.services.queues import queues
+from plugins.config import ARQ_API_KEY
+from plugins.config import BOT_NAME as bn
+from plugins.config import DURATION_LIMIT
+from plugins.config import UPDATES_CHANNEL as updateschannel
+from plugins.config import que
+from plugins.function.admins import admins as a
+from plugins.helpers.admins import get_administrators
+from plugins.helpers.channelmusic import get_chat_id
+from plugins.helpers.errors import DurationLimitError
+from plugins.helpers.decorators import errors
+from plugins.helpers.decorators import authorized_users_only
+from plugins.helpers.filters import command, other_filters
+from plugins.helpers.gets import get_file_name
+from plugins.services.callsmusic import callsmusic
+from plugins.services.callsmusic.callsmusic import client as USER
+from plugins.services.converter.converter import convert
+from plugins.services.downloaders import youtube
+from plugins.services.queues import queues
 
 aiohttpsession = aiohttp.ClientSession()
 chat_id = None
