@@ -60,4 +60,4 @@ async def ytsearch(_, message: Message):
             i += 1
         await m.edit(text, disable_web_page_preview=True)
     
-except Exception as e:
+
