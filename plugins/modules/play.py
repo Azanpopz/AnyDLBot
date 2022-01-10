@@ -22,10 +22,7 @@ from plugins.config import que
 
 from plugins.helpers.errors import DurationLimitError
 
-from plugins.helpers.filters import command, other_filters
 
-from plugins.services.callsmusic import callsmusic
-from plugins.services.callsmusic.callsmusic import client as USER
 
 from plugins.services.downloaders import youtube
 
