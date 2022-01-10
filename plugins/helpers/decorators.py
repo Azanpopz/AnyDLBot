@@ -3,7 +3,7 @@ from typing import Callable
 from pyrogram import Client
 from pyrogram.types import Message
 
-from plugins import SUDO_USERS
+from plugins.config import SUDO_USERS
 from plugins.helpers.admins import get_administrators
 
 
