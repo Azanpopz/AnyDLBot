@@ -20,5 +20,3 @@ bot = Bot(
     plugins=dict(root="plugins.modules"),
 )
 
-bot.start()
-run()
