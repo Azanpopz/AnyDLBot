@@ -24,56 +24,39 @@ from youtubesearchpython import VideosSearch
 
 
 
-@Client.on_message(filters.command("srt"))
-async def text(bot, update):
-    
-    text = "Search youtube videos using below buttons.\n\nMade by @FayasNoushad"
-    reply_markup = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton(text="Search here", switch_inline_query_current_chat="")],
-            [InlineKeyboardButton(text="Search in another chat", switch_inline_query="")]
-        ]
-    )
-    
-    
+import logging
 
-@Client.on_message(filters.command("search"))
-async def search(bot, update):
-    
-    results = VideosSearch(update.message, limit=50).result()
-    answers = []
-    
-    for result in results:
-        title = result["title"]
-        views_short = result["viewCount"]["short"]
-        duration = result["duration"]
-        duration_text = result["accessibility"]["duration"]
-        views = result["viewCount"]["text"]
-        publishedtime = result["publishedTime"]
-        channel_name = result["channel"]["name"]
-        channel_link = result["channel"]["link"]
-        description = f"{views_short} | {duration}"
-        details = f"**Title:** {title}" + "\n" \
-        f"**Channel:** [{channel_name}]({channel_link})" + "\n" \
-        f"**Duration:** {duration_text}" + "\n" \
-        f"**Views:** {views}" + "\n" \
-        f"**Published Time:** {publishedtime}" + "\n" \
-        "\n" + "**Made by @FayasNoushad**"
-        thumbnail = ytthumb.thumbnail(result["id"])
-        reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Watch Video 📹", url=result["link"])]]
-        )
-        try:
-            answers.append(
-                InlineQueryResultPhoto(
-                    title=title,
-                    description=description,
-                    caption=details,
-                    photo_url=thumbnail,
-                    reply_markup=reply_markup
-                )
-            )
-        except:
-            pass
-    
-    await update.answer(answers)
+from pyrogram import Client as app
+from pyrogram.types import Message
+from youtube_search import YoutubeSearch
+
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+import pyrogram
+
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+
+
+@Client.on_message(pyrogram.filters.command(["search"]))
+async def ytsearch(_, message: Message):
+    try:
+        if len(message.command) < 2:
+            await message.reply_text("/search needs an argument!")
+            return
+        query = message.text.split(None, 1)[1]
+        m = await message.reply_text("Searching....")
+        results = YoutubeSearch(query, max_results=4).to_dict()
+        i = 0
+        text = ""
+        while i < 4:
+            text += f"Title - {results[i]['title']}\n"
+            text += f"Duration - {results[i]['duration']}\n"
+            text += f"Views - {results[i]['views']}\n"
+            text += f"Channel - {results[i]['channel']}\n"
+            text += f"https://youtube.com{results[i]['url_suffix']}\n\n"
+            i += 1
+        await m.edit(text, disable_web_page_preview=True)
+    except Exception as e:
