@@ -21,9 +21,9 @@ from plugins.config import BOT_NAME as bn
 from plugins.config import DURATION_LIMIT
 from plugins.config import UPDATES_CHANNEL as updateschannel
 from plugins.config import que
-from plugins.function.admins import admins as a
-from plugins.helpers.errors import DurationLimitError
-from plugins.services.downloaders import youtube
+from plugins.function. import admins as a
+from plugins.helpers. import DurationLimitError
+from plugins.services. import youtube
  
 
 aiohttpsession = aiohttp.ClientSession()
