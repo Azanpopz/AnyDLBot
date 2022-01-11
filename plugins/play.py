@@ -23,7 +23,6 @@ from plugins.config import UPDATES_CHANNEL as updateschannel
 from plugins.config import que
 
 
-from plugins.services. import youtube
  
 
 aiohttpsession = aiohttp.ClientSession()
